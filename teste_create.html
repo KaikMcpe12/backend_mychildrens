@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.tag {
+    color: white;
+    background-color: blue;
+    border-radius: 5px;
+    padding: 2px;
+}
+</style>
+</head>
+<body>
+
+<form method="post" action="controller/create_reddit_controller.php">
+    <div id="tagContainer"></div>
+    <input type="text" id="tagInput" onkeyup="checkForSpace(event)">
+    <input type="hidden" id="hiddenInput" name="tags">
+    <input type="submit" value="Submit" name="submit">
+</form>
+
+<script>
+function checkForSpace(event) {
+    var input = event.target;
+    if (event.key === ' ') {
+        var tagContainer = document.getElementById('tagContainer');
+        var hiddenInput = document.getElementById('hiddenInput');
+        var newTag = document.createElement('span');
+        newTag.className = 'tag';
+        newTag.textContent = input.value.trim();
+        tagContainer.appendChild(newTag);
+        hiddenInput.value += input.value.trim() + ' ';
+        input.value = '';
+    }
+}
+</script>
+
+</body>
+</html>
